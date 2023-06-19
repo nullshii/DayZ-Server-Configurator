@@ -19,11 +19,19 @@ public class SideBarViewModel : ViewModelBase
 
     private void OpenGithub()
     {
-        Process.Start("https://github.com/nullshii/DayZ-Server-Configurator");
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "https://github.com/nullshii/DayZ-Server-Configurator",
+            UseShellExecute = true
+        });
     }
 
     private void OpenGitlab()
     {
-        Process.Start("https://gitlab.com/nullshii/dayz-server-configurator");
+        Process.Start(new ProcessStartInfo
+        {
+            FileName = "https://gitlab.com/nullshii/dayz-server-configurator",
+            UseShellExecute = true
+        });
     }
 }
