@@ -22,7 +22,7 @@
                 <StackPanel HorizontalAlignment="Center"
                             Orientation="Horizontal"
                             Margin="0 0 0 12">
-                    
+
                     <Button Width="50" Height="50"
                             CornerRadius="12"
                             Margin="0 0 10 0"
@@ -30,7 +30,7 @@
                             Command="{Binding OpenGithubCommand}">
                         <Image Source="/Assets/github-mark-white.png" />
                     </Button>
-                    
+
                     <Button Width="50" Height="50"
                             CornerRadius="12"
                             Background="{StaticResource Blueish 300}"
@@ -38,9 +38,13 @@
                         <Image Source="/Assets/gitlab-logo.png" />
                     </Button>
                 </StackPanel>
-                
-                <TextBlock Text="{Binding Version}"
-                           Classes="default" />
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Version "
+                               Classes="default" />
+                    <TextBlock Text="{Binding Version}"
+                               Classes="default" />
+                </StackPanel>
             </StackPanel>
         </Grid>
     </Border>
