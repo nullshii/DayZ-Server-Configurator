@@ -1,4 +1,5 @@
-﻿using System.Reactive;
+﻿using System.Diagnostics;
+using System.Reactive;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -18,9 +19,11 @@ public class SideBarViewModel : ViewModelBase
 
     private void OpenGithub()
     {
+        Process.Start("https://github.com/nullshii/DayZ-Server-Configurator");
     }
-    
+
     private void OpenGitlab()
     {
+        Process.Start("https://gitlab.com/nullshii/dayz-server-configurator");
     }
 }
