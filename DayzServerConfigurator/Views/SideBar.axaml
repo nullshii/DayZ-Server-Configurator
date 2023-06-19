@@ -1,0 +1,48 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:DayzServerConfigurator.ViewModels"
+             x:DataType="vm:SideBarViewModel"
+             mc:Ignorable="d" d:DesignHeight="600"
+             x:Class="DayzServerConfigurator.Views.SideBar">
+    <Design.DataContext>
+        <vm:SideBarViewModel />
+    </Design.DataContext>
+
+    <Border Width="272" Padding="20" Background="{StaticResource Blueish 600}">
+        <Grid RowDefinitions="Auto * Auto">
+            <StackPanel Grid.Row="0">
+                <Image Source="/Assets/dayz-logo.png" />
+                <TextBlock Text="Server configurator"
+                           Margin="0 10 0 0"
+                           Classes="default" />
+            </StackPanel>
+            <StackPanel Grid.Row="2" HorizontalAlignment="Center">
+                <StackPanel HorizontalAlignment="Center"
+                            Orientation="Horizontal"
+                            Margin="0 0 0 12">
+                    
+                    <Button Width="50" Height="50"
+                            CornerRadius="12"
+                            Margin="0 0 10 0"
+                            Background="{StaticResource Blueish 300}"
+                            Command="{Binding OpenGithubCommand}">
+                        <Image Source="/Assets/github-mark-white.png" />
+                    </Button>
+                    
+                    <Button Width="50" Height="50"
+                            CornerRadius="12"
+                            Background="{StaticResource Blueish 300}"
+                            Command="{Binding OpenGitlabCommand}">
+                        <Image Source="/Assets/gitlab-logo.png" />
+                    </Button>
+                </StackPanel>
+                
+                <TextBlock Text="{Binding Version}"
+                           Classes="default" />
+            </StackPanel>
+        </Grid>
+    </Border>
+
+</UserControl>
