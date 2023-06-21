@@ -7,6 +7,7 @@
         <entry key="DayzServerConfigurator/Resources/Colors.axaml" value="DayzServerConfigurator/DayzServerConfigurator.csproj" />
         <entry key="DayzServerConfigurator/Styles/TextStyles.axaml" value="DayzServerConfigurator/DayzServerConfigurator.csproj" />
         <entry key="DayzServerConfigurator/Views/MainWindow.axaml" value="DayzServerConfigurator/DayzServerConfigurator.csproj" />
+        <entry key="DayzServerConfigurator/Views/PathHolder.axaml" value="DayzServerConfigurator/DayzServerConfigurator.csproj" />
         <entry key="DayzServerConfigurator/Views/SideBar.axaml" value="DayzServerConfigurator/DayzServerConfigurator.csproj" />
       </map>
     </option>

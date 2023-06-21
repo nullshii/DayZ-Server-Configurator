@@ -1,0 +1,25 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="using:DayzServerConfigurator.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="400"
+             x:DataType="vm:PathHolderViewModel"
+             x:Class="DayzServerConfigurator.Views.PathHolder">
+    <Design.DataContext>
+        <vm:PathHolderViewModel />
+    </Design.DataContext>
+
+    <StackPanel>
+        <TextBlock Text="{Binding Label}"
+                   Classes="default"
+                   Margin="0 0 0 6"/>
+        <TextBox Text="{Binding Path}"
+                 Classes="default"
+                 IsReadOnly="True"
+                 Background="{StaticResource 'Blueish 300'}"
+                 CornerRadius="6"
+                 BorderThickness="0" />
+    </StackPanel>
+
+</UserControl>
