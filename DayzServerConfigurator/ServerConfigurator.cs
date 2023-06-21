@@ -29,11 +29,30 @@ public class ServerConfigurator
     public DirectoryInfo ProfileDirectory { get; }
     public List<DirectoryInfo> ModDirectories { get; private set; }
 
-    public void Configure()
+    public async Task Configure()
     {
-        RemoveOldModFiles();
-        CopyNewModFiles();
-        // TODO: Generate Start.bat file
+        await RemoveOldModFiles();
+        await CopyNewModFiles();
+        await GenerateBatFile();
+    }
+
+    private async Task GenerateBatFile()
+    {
+        string mods = "-mods=" + ModDirectories
+            .Select(directoryInfo => directoryInfo.Name)
+            .Aggregate((first, second) => $"{first};{second}");
+
+        mods = string.IsNullOrWhiteSpace(mods) ? "" : $"\"-mod={mods}\"";
+
+        string fileContent = "DayZServer_x64.exe " +
+                             "-config=serverDZ.cfg " +
+                             "-cpuCount=2 " +
+                             "-dologs -adminlog -netlog -freezecheck " +
+                             $"\"-BEpath={BattlEyeDirectory.FullName}\" " +
+                             $"\"-profiles={ProfileDirectory.FullName}\" " +
+                             mods;
+
+        await File.WriteAllTextAsync(Path.Combine(ServerDirectory.FullName, "Start.bat"), fileContent);
     }
 
     public void UpdateModList()
@@ -41,7 +60,7 @@ public class ServerConfigurator
         ModDirectories = ServerDirectory.GetDirectories("@*", SearchOption.TopDirectoryOnly).ToList();
     }
 
-    private async void CopyNewModFiles()
+    private async Task CopyNewModFiles()
     {
         foreach (DirectoryInfo modDirectory in ModDirectories)
         {
@@ -63,7 +82,7 @@ public class ServerConfigurator
         }
     }
 
-    private async void RemoveOldModFiles()
+    private async Task RemoveOldModFiles()
     {
         string[] baseAddons = await File.ReadAllLinesAsync(Path.Combine("settings", "DefaultAddonList.txt"));
         string[] baseKeys = await File.ReadAllLinesAsync(Path.Combine("settings", "DefaultKeyList.txt"));
