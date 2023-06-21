@@ -40,6 +40,7 @@
                     <ListBox Grid.Row="1"
                              Background="{StaticResource 'Blueish 300'}"
                              CornerRadius="6"
+                             Items="{Binding ModList}"
                              Margin="0 0 0 20" />
                 </Grid>
 
@@ -57,7 +58,7 @@
 
                     <Button Command="{Binding SelectBasePathCommand}"
                             Content="Select base path" />
-                    <Button Command="{Binding CheckModListCommand}"
+                    <Button Command="{Binding UpdateModListCommand}"
                             Content="Check mod list" />
                     <Button Command="{Binding ConfigureServerCommand}"
                             Content="Configure server" />
