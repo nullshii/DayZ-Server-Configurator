@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.IO;
 using System.Reactive;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
@@ -34,7 +35,7 @@ public class MainWindowViewModel : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> SelectBasePathCommand { get; set; }
     public ReactiveCommand<Unit, Unit> UpdateModListCommand { get; set; }
-    public ReactiveCommand<Unit, Unit> ConfigureServerCommand { get; set; }
+    public ReactiveCommand<Unit, Task> ConfigureServerCommand { get; set; }
 
     [Reactive] public ObservableCollection<string> ModList { get; set; }
 
@@ -45,7 +46,7 @@ public class MainWindowViewModel : ViewModelBase
     [Reactive] public PathHolderViewModel ProfilePathHolder { get; set; }
     [Reactive] public PathHolderViewModel BattlEyePathHolder { get; set; }
 
-    private void ConfigureServer()
+    private async Task ConfigureServer()
     {
         if (_configurator == null)
         {
@@ -53,7 +54,7 @@ public class MainWindowViewModel : ViewModelBase
             return;
         }
 
-        _configurator.Configure();
+        await _configurator.Configure();
     }
     
     private void UpdateModList()
