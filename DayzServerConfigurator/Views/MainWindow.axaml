@@ -11,10 +11,58 @@
         Title="DayZ server configurator">
 
     <Design.DataContext>
-        <vm:MainWindowViewModel/>
+        <vm:MainWindowViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="Auto *">
-        <v:SideBar DataContext="{Binding SideBar}"/>
+    <Grid ColumnDefinitions="Auto *"
+          Background="{StaticResource 'Blueish 500'}">
+        <v:SideBar Grid.Column="0" DataContext="{Binding SideBar}" />
+
+        <Border Grid.Column="1" Padding="20">
+            <Grid RowDefinitions="Auto * Auto">
+                <StackPanel>
+                    <StackPanel.Styles>
+                        <Style Selector="v|PathHolder">
+                            <Setter Property="Margin" Value="0 0 0 26" />
+                        </Style>
+                    </StackPanel.Styles>
+
+                    <v:PathHolder DataContext="{Binding KeysPathHolder}" />
+                    <v:PathHolder DataContext="{Binding AddonsPathHolder}" />
+                    <v:PathHolder DataContext="{Binding ProfilePathHolder}" />
+                    <v:PathHolder DataContext="{Binding BattlEyePathHolder}" />
+                </StackPanel>
+
+                <Grid Grid.Row="1" RowDefinitions="Auto *">
+                    <TextBlock Grid.Row="0" Text="Loaded mods:"
+                               Classes="default"
+                               Margin="0 0 0 6" />
+                    <ListBox Grid.Row="1"
+                             Background="{StaticResource 'Blueish 300'}"
+                             CornerRadius="6"
+                             Margin="0 0 0 20" />
+                </Grid>
+
+                <StackPanel Grid.Row="2"
+                            Orientation="Horizontal">
+                    <StackPanel.Styles>
+                        <Style Selector="Button">
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Padding" Value="8" />
+                            <Setter Property="CornerRadius" Value="6" />
+                            <Setter Property="Margin" Value="0 0 10 0" />
+                            <Setter Property="Background" Value="{StaticResource 'Blueish 300'}" />
+                        </Style>
+                    </StackPanel.Styles>
+
+                    <Button Command="{Binding SelectBasePathCommand}"
+                            Content="Select base path" />
+                    <Button Command="{Binding CheckModListCommand}"
+                            Content="Check mod list" />
+                    <Button Command="{Binding ConfigureServerCommand}"
+                            Content="Configure server" />
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
