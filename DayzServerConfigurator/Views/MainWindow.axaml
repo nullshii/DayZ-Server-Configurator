@@ -4,7 +4,7 @@
         xmlns:v="using:DayzServerConfigurator.Views"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600"
+        mc:Ignorable="d" d:DesignWidth="1000" d:DesignHeight="600"
         x:Class="DayzServerConfigurator.Views.MainWindow"
         x:DataType="vm:MainWindowViewModel"
         Icon="/Assets/avalonia-logo.ico"
@@ -40,18 +40,27 @@
                     <ListBox Grid.Row="1"
                              Background="{StaticResource 'Blueish 300'}"
                              CornerRadius="6"
-                             Items="{Binding ModList}"
-                             Margin="0 0 0 20" />
+                             Items="{Binding ModDirectories}"
+                             Margin="0 0 0 20">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </Grid>
 
                 <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                     <StackPanel.Styles>
                         <Style Selector="Button">
+                            <Setter Property="Width" Value="150" />
+                            <Setter Property="Height" Value="34" />
                             <Setter Property="FontSize" Value="16" />
                             <Setter Property="Padding" Value="8" />
                             <Setter Property="CornerRadius" Value="6" />
                             <Setter Property="Margin" Value="0 0 10 0" />
+                            <Setter Property="HorizontalContentAlignment" Value="Center" />
                             <Setter Property="Background" Value="{StaticResource 'Blueish 300'}" />
                         </Style>
                     </StackPanel.Styles>
@@ -62,6 +71,11 @@
                             Content="Check mod list" />
                     <Button Command="{Binding ConfigureServerCommand}"
                             Content="Configure server" />
+
+                    <ProgressBar Value="{Binding Progress}"
+                                 Minimum="0" Maximum="1"
+                                 Height="34" MinWidth="140"
+                                 CornerRadius="6" />
                 </StackPanel>
             </Grid>
         </Border>
